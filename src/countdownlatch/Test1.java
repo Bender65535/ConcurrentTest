@@ -8,6 +8,7 @@ import java.util.concurrent.CountDownLatch;
  * 在门闩完全开发之前等待,当门闩完全开放后执行
  * 避免锁的效率低下问题(效率比重量级锁高)
  *
+ * 让一些线程阻塞直到另一些线程完成一系列操作后才被唤醒
  */
 public class Test1 {
     //在一个门上挂5个锁
