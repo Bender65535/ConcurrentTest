@@ -30,13 +30,11 @@ public class Test1 {
         }).start();
 
         new Thread(()->{
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             name="lisi";
             tl.set("wangwu");
+//            System.out.println(name);
+//            System.out.println(tl.get());
         }).start();
     }
 }
