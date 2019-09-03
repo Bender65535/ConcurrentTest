@@ -15,7 +15,8 @@ package threadlocal;
  * ThreadLocal.remove();
  */
 public class Test1 {
-    volatile static String name="zhangsan";
+    //线程共享全局变量
+    static String name="zhangsan";
     static ThreadLocal<String> tl=new ThreadLocal<>();
 
     public static void main(String[] args) {
