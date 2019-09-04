@@ -4,6 +4,8 @@ package sync;
  * synchronize为锁对象:this,临界资源对象(共享的对象,多线程都能访问到的对象),Class类对象
  *
  * 每个线程中有线程栈帧(存引用)
+ *
+ * 缺点:一致性保证,并发性下降
  */
 public class Test1 {
     private int count = 0;

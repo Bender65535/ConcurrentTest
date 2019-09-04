@@ -1,4 +1,4 @@
-package container.queue;
+package queue;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.SynchronousQueue;

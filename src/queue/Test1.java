@@ -1,4 +1,4 @@
-package container.queue;
+package queue;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedDeque;

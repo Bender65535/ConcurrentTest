@@ -1,4 +1,4 @@
-package container.queue;
+package queue;
 
 import java.util.concurrent.LinkedTransferQueue;
 import java.util.concurrent.TransferQueue;
