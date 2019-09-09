@@ -33,6 +33,7 @@ public class Test1 extends AbstractQueuedSynchronizer {
         //cas
         if(compareAndSetState(0,1)){
             //设置互斥锁-共享锁
+
             setExclusiveOwnerThread(Thread.currentThread());
             return true;
         }
