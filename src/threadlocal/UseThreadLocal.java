@@ -2,6 +2,8 @@ package threadlocal;
 
 /**
  * 使用ThreadLocal
+ * 
+ * JDK的bin目录下的 jvisualvm.exe可以查看java运行时的内存情况
  */
 public class UseThreadLocal {
     public static ThreadLocal<Integer> threadLocal=new ThreadLocal<>();

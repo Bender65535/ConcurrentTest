@@ -1,5 +1,8 @@
 package threadlocal;
 
+/**
+ * 涉及到java内存模型
+ */
 public class NoThreadLocal {
 
     public static int count;
@@ -29,7 +32,7 @@ public class NoThreadLocal {
 
         @Override
         public void run() {
-            count=id;
+            count=id;  //变量赋值给变量不是原子性操作
 //            try {
 //                Thread.sleep(1000);
 //            } catch (InterruptedException e) {
