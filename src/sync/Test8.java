@@ -20,11 +20,6 @@ public class Test8 {
             }
             if (i == 5) {
                 i = 1 / 0;
-//                try{
-//                    i = 1 / 0;
-//                }catch (Exception e){
-//                    i=0;
-//                }
             }
         }
     }
@@ -35,6 +30,7 @@ public class Test8 {
         //调用同一个对象的同步方法
         new Thread(() -> t.m(), "t1").start();
 
+        //t1抛出异常释放锁后就不再执行
         new Thread(() -> t.m(), "t2").start();
     }
 }

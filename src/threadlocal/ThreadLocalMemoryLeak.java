@@ -36,10 +36,13 @@ public class ThreadLocalMemoryLeak {
                 ThreadLocalMemoryLeak oom=new ThreadLocalMemoryLeak();
                 oom.localVariable=new ThreadLocal<>();
                 oom.localVariable.set(new LocalVariable());
+                oom.localVariable.get();
+
                 System.out.println("use local");
             });
             /**
              * 如果线程不被释放,那么这个线程将一直绑定着ThreadLocalMap
+             * oom.localVariable.remove();
              */
         }
     }

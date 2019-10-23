@@ -21,6 +21,7 @@ public class Test11 {
     void m1(){
         synchronized (s1){
             try {
+                //t1释放锁
                 s1.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -33,7 +34,10 @@ public class Test11 {
     }
 
     void m2(){
+        //t2获取锁
         synchronized (s2){
+            //唤醒t1线程
+            //但是t1被唤醒后,"hello"对象的偏向锁指向的是t2线程,所以当t1被唤醒执行m1时,获取不到锁
             s2.notifyAll();
             System.out.println("m2()");
             while(true){

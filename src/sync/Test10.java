@@ -2,7 +2,7 @@ package sync;
 
 /**
  * 锁对象变更问题
- * 同步代码一旦加锁后,那么会有一个临时的锁引用执行所对象,和真实的引用无直接关联
+ * 同步代码一旦加锁后,那么会有一个临时的锁引用执行锁对象,和真实的引用无直接关联
  * 在锁为释放之前,修改锁对象引用,不会影响同步代码块的执行
  *
  * 改变临界,线程1栈帧中的引用所指的对象不变,打印出来的o对象并不是栈帧中的,而是this对象中的
@@ -24,6 +24,7 @@ public class Test10 {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                //t1这里打印的却是被修改后的o
                 System.out.println(Thread.currentThread().getName()+" - "+o);
             }
         }
@@ -56,12 +57,13 @@ public class Test10 {
         Thread t2=new Thread(()->t.m(),"thread2");
 
 
+        //改变o的指向,修改锁对象引用,不会影响同步代码块的执行
         t.o=new Object();
         t2.start();
 
-        System.out.println(t.i);
-        System.out.println(t.a());
-        System.out.println(t.i);
+        System.out.println(t.i);   //0
+        System.out.println(t.a()); //0
+        System.out.println(t.i);   //10
     }
 
 }

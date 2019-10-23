@@ -18,13 +18,13 @@ public class Test1 {
      */
     public void testSync1() {
         synchronized (o) {
-            System.out.println(Thread.currentThread().getName() + "count=" + count);
+            System.out.println(Thread.currentThread().getName() + " count=" + count);
         }
     }
 
     public void testSync2() {
         synchronized (this) {
-            System.out.println(Thread.currentThread().getName() + "count=" + count);
+            System.out.println(Thread.currentThread().getName() + " count=" + count);
         }
     }
 
