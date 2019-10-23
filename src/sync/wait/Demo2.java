@@ -32,15 +32,23 @@ public class Demo2 {
         return new Thread(()->{
             Optional.of("The worker ["+Thread.currentThread().getName()+"]begin capture data")
                     .ifPresent(System.out::println);
+
             synchronized (CONTROLS){
-                while (CONTROLS.size()>MAX_WORKER ){
+                System.out.println(Thread.currentThread().getName()+"获取了锁");
+                //当工人数量大于5时,当前的线程wait
+                while (CONTROLS.size()>=MAX_WORKER ){
                     try {
+                        //释放锁,让线程竞争
+                        System.out.println(Thread.currentThread().getName()+" wait");
+                        //当批次达到5的时候释放
                         CONTROLS.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+                //添加工人
                 CONTROLS.addLast(new Control());
+                System.out.println("CONTROLS的数量"+CONTROLS.size());
             }
 
             Optional.of("The worker ["+Thread.currentThread().getName()+"] is working...")
@@ -51,9 +59,11 @@ public class Demo2 {
                 e.printStackTrace();
             }
 
+
             synchronized (CONTROLS){
                 Optional.of("The worker["+Thread.currentThread().getName() + "] END capture data")
                         .ifPresent(System.out::println);
+                //当一个工人结束工作后,唤醒所有wait的线程,让他们再次竞争
                 CONTROLS.removeFirst();
                 CONTROLS.notifyAll();
             }
